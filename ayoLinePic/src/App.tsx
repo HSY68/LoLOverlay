@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import './App.css'
+import { PackGallery } from './components/PackGallery'
 import { StickerPreview } from './components/StickerPreview'
 import { revokeUrls } from './lib/canvas'
 import { exportLinePackZip } from './lib/exportZip'
@@ -16,9 +17,9 @@ const HERO_FACES = [
 ] as const
 
 const DEFAULT_META: PackMeta = {
-  title: 'ayoLinePic 貼圖包',
+  title: '日常用語 24 張',
   fitMode: 'contain',
-  packSize: 8,
+  packSize: 24,
 }
 
 function createId() {
@@ -230,20 +231,17 @@ export default function App() {
           <h1>把圖片變成可上傳的 LINE 貼圖</h1>
           <p>拖入圖片，自動套用 370×320 規格，一鍵打包 ZIP。</p>
           <div className="cta-row">
-            <button type="button" className="btn btn-primary" onClick={scrollToWorkspace}>
-              開始製作
-            </button>
-            <a
-              className="btn btn-ghost"
-              href="https://creator.line.me/en/guideline/sticker/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LINE 規格說明
+            <a className="btn btn-primary" href="#daily24">
+              看日常 24 張
             </a>
+            <button type="button" className="btn btn-ghost" onClick={scrollToWorkspace}>
+              自己上傳製作
+            </button>
           </div>
         </div>
       </header>
+
+      <PackGallery />
 
       <main className="workspace" ref={workspaceRef} id="workspace">
         <div className="workspace-head">

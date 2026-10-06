@@ -1,0 +1,33 @@
+{
+  "id": "daily24",
+  "title": "日常用語 24 張",
+  "character": "上傳角色（厚眉眼鏡男）",
+  "count": 24,
+  "stickers": [
+    { "file": "01.png", "label": "謝謝！" },
+    { "file": "02.png", "label": "對不起…" },
+    { "file": "03.png", "label": "好的！" },
+    { "file": "04.png", "label": "加油！" },
+    { "file": "05.png", "label": "讚！" },
+    { "file": "06.png", "label": "掰掰！" },
+    { "file": "07.png", "label": "蛤？" },
+    { "file": "08.png", "label": "了解！" },
+    { "file": "09.png", "label": "拜託了！" },
+    { "file": "10.png", "label": "不好意思…" },
+    { "file": "11.png", "label": "我在忙！" },
+    { "file": "12.png", "label": "吃飯中！" },
+    { "file": "13.png", "label": "讓我想想…" },
+    { "file": "14.png", "label": "沒問題！" },
+    { "file": "15.png", "label": "累了…" },
+    { "file": "16.png", "label": "什麼！？" },
+    { "file": "17.png", "label": "哈哈哈！" },
+    { "file": "18.png", "label": "嗚嗚…" },
+    { "file": "19.png", "label": "收到！" },
+    { "file": "20.png", "label": "晚安！" },
+    { "file": "21.png", "label": "感恩啦！" },
+    { "file": "22.png", "label": "辛苦了！" },
+    { "file": "23.png", "label": "搞定！" },
+    { "file": "24.png", "label": "一切順利！" }
+  ],
+  "zip": "ayoLinePic-daily24-line-stickers.zip"
+}

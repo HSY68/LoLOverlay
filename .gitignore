@@ -11,3 +11,8 @@ Launcher/Debug/*
 Launcher/Release/*
 Overlay/Debug/*
 Overlay/Release/*
+
+# ayoLinePic (Node)
+ayoLinePic/node_modules/
+ayoLinePic/dist/
+ayoLinePic/*.local

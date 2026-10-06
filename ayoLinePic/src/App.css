@@ -35,30 +35,44 @@
 .sticker-tile {
   aspect-ratio: 370 / 320;
   border-radius: 1.4rem;
+  display: grid;
+  place-items: center;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(214, 243, 228, 0.55)),
-    repeating-linear-gradient(
-      -12deg,
-      transparent,
-      transparent 10px,
-      rgba(6, 199, 85, 0.05) 10px,
-      rgba(6, 199, 85, 0.05) 11px
-    );
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 10px 30px rgba(16, 34, 26, 0.08);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(214, 243, 228, 0.62));
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(16, 34, 26, 0.1);
+  animation: tile-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sticker-tile .face {
+  width: 72%;
+  height: auto;
+  filter: drop-shadow(0 6px 10px rgba(16, 34, 26, 0.12));
+}
+
+.sticker-tile[data-tone='1'] {
+  background: linear-gradient(160deg, #fff 0%, #c8efd8 100%);
+}
+
+.sticker-tile[data-tone='2'] {
+  background: linear-gradient(160deg, #f7fffa 0%, #9fe0b8 100%);
+}
+
+.sticker-tile:nth-child(odd) {
+  animation-delay: 0.05s;
 }
 
 .sticker-tile:nth-child(3n) {
-  background:
-    linear-gradient(160deg, #fff 0%, #c8efd8 100%);
+  animation-delay: 0.12s;
 }
 
 .sticker-tile:nth-child(4n) {
-  transform: translateY(12%);
+  translate: 0 12%;
 }
 
 .sticker-tile:nth-child(5n) {
-  transform: translateY(-8%) rotate(3deg);
+  translate: 0 -8%;
+  rotate: 3deg;
 }
 
 .hero-copy {
@@ -419,11 +433,12 @@
   background-color: #f7fcf9;
 }
 
+.editor-preview canvas,
 .editor-preview img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform-origin: center center;
+  display: block;
 }
 
 .controls {
@@ -502,6 +517,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes tile-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

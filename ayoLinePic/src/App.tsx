@@ -1,9 +1,19 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import './App.css'
+import { StickerPreview } from './components/StickerPreview'
 import { revokeUrls } from './lib/canvas'
 import { exportLinePackZip } from './lib/exportZip'
 import { PACK_SIZES } from './lib/lineSpecs'
 import type { FitMode, PackMeta, StickerItem } from './types'
+
+const HERO_FACES = [
+  { fill: '#06c755', eyes: 'open', mouth: 'smile' },
+  { fill: '#1f6f4a', eyes: 'wink', mouth: 'grin' },
+  { fill: '#c45c26', eyes: 'open', mouth: 'flat' },
+  { fill: '#10221a', eyes: 'open', mouth: 'smile' },
+  { fill: '#3aa36a', eyes: 'wink', mouth: 'flat' },
+  { fill: '#0a9e4a', eyes: 'open', mouth: 'grin' },
+] as const
 
 const DEFAULT_META: PackMeta = {
   title: 'ayoLinePic 貼圖包',
@@ -158,21 +168,61 @@ export default function App() {
     }
   }
 
-  const previewStyle = selected
-    ? {
-        transform: `translate(${selected.offsetX * 0.35}px, ${selected.offsetY * 0.35}px) scale(${selected.scale})`,
-        objectFit: selected.fitMode as 'contain' | 'cover',
-      }
-    : undefined
-
   return (
     <div className="app">
       <header className="hero">
         <div className="hero-visual" aria-hidden="true">
           <div className="sticker-plane">
-            {Array.from({ length: 24 }, (_, i) => (
-              <div className="sticker-tile" key={i} />
-            ))}
+            {Array.from({ length: 24 }, (_, i) => {
+              const face = HERO_FACES[i % HERO_FACES.length]
+              return (
+                <div className="sticker-tile" key={i} data-tone={i % 3}>
+                  <svg viewBox="0 0 100 100" className="face">
+                    <circle cx="50" cy="52" r="34" fill={face.fill} />
+                    {face.eyes === 'wink' ? (
+                      <>
+                        <circle cx="38" cy="46" r="3.2" fill="#f3faf6" />
+                        <path
+                          d="M58 46h10"
+                          stroke="#f3faf6"
+                          strokeWidth="3.2"
+                          strokeLinecap="round"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <circle cx="38" cy="46" r="3.2" fill="#f3faf6" />
+                        <circle cx="62" cy="46" r="3.2" fill="#f3faf6" />
+                      </>
+                    )}
+                    {face.mouth === 'grin' ? (
+                      <path
+                        d="M36 60c4 10 24 10 28 0"
+                        fill="none"
+                        stroke="#f3faf6"
+                        strokeWidth="3.4"
+                        strokeLinecap="round"
+                      />
+                    ) : face.mouth === 'flat' ? (
+                      <path
+                        d="M40 62h20"
+                        stroke="#f3faf6"
+                        strokeWidth="3.2"
+                        strokeLinecap="round"
+                      />
+                    ) : (
+                      <path
+                        d="M38 60c3 8 21 8 24 0"
+                        fill="none"
+                        stroke="#f3faf6"
+                        strokeWidth="3.2"
+                        strokeLinecap="round"
+                      />
+                    )}
+                  </svg>
+                </div>
+              )
+            })}
           </div>
         </div>
         <div className="hero-copy">
@@ -332,7 +382,7 @@ export default function App() {
                 <h3>調整這張</h3>
                 <p className="hint">{selected.name}</p>
                 <div className="editor-preview">
-                  <img src={selected.sourceUrl} alt="" style={previewStyle} />
+                  <StickerPreview item={selected} />
                 </div>
                 <div className="controls">
                   <div className="control">
